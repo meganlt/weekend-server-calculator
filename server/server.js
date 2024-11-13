@@ -1,17 +1,20 @@
 const express = require('express');
 const app = express();
 let PORT = process.env.PORT || 5001;
+const calculationsRouter = require( './routers/calculations.router' );
 
 app.use(express.json());
 app.use(express.static('server/public'));
+app.use( express.urlencoded( { extended: true } ) );
 
 // Global variable that will contain all of the
 // calculation objects:
-let calculations = []
+// let calculations = []
 
 
 // Here's a wonderful place to make some routes:
 
+app.use( '/calculations', calculationsRouter );
 // GET /calculations
 
 // POST /calculations
