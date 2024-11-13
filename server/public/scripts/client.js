@@ -38,7 +38,7 @@ function getCalculations(){
     axios.get( '/calculations/recent' ).then( (response)=>{
         console.log( response.data );
         if( response.data !== 'empty'){
-            document.getElementById( 'recentResultOut' ).innerHTML = `${response.data.numOne}${response.data.operator}${response.data.numTwo} = ${response.data.result}`
+            document.getElementById( 'recentResultOut' ).innerHTML = `<h3>${response.data.result}</h3><p>(${response.data.numOne}${response.data.operator}${response.data.numTwo} = ${response.data.result})`
         }
         else {
             document.getElementById( 'recentResultOut' ).innerHTML = `No calculations yet. Why not try some math?`
