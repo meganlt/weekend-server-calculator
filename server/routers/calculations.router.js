@@ -16,7 +16,9 @@ calculationsRouter.post('/', (req, res)=>{
     console.log( '/calculations POST', req.body );
     let responseObject = req.body;
     calculationsModule.all.push(responseObject);
-    res.send( calculationsModule );
+    res.sendStatus(201);
+    // res.send( calculationsModule );
+
 })
 
 

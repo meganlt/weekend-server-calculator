@@ -2,28 +2,25 @@ console.log('client.js is sourced!');
 
 function setOperator(){
     event.preventDefault();
+    // Resetting classes for all buttons first
     let allButtons = document.querySelectorAll('.button-operator');
     allButtons.forEach( el => el.classList = "button-operator");
-
+    // Setting the chosen Operator's class and Hidden Input value
     let chosenOperator = event.target.innerHTML;
-    console.log(chosenOperator);
     document.getElementById('operatorIn').value = chosenOperator;
     event.target.classList = 'button-operator selected';
-}
+} // end setOperator
 
 function getCalculations(){
     console.log('in getCalculations');
-
     axios.get( '/calculations' )
     .then( (response)=>{
-        console.log( response.data );
-
+        // console.log( response.data );
+        // Assembling Content For Results Div
         const calculations = response.data;
         const contentDivAll = document.getElementById( 'resultHistoryOut' );
-
         contentDivAll.innerHTML = '';
         let contentHTML = '';
-
         for(let calculation of calculations){
             contentHTML += `
             <div class="result">
@@ -31,8 +28,9 @@ function getCalculations(){
             </div>
             `
         }
+        // Printing assembled content to DOM
         contentDivAll.innerHTML = contentHTML;   
-    }).catch();
+    })
  } // end getCalculations
 
  function getRecent(){
@@ -43,7 +41,7 @@ function getCalculations(){
             document.getElementById( 'recentResultOut' ).innerHTML = `${response.data.numOne}${response.data.operator}${response.data.numTwo} = ${response.data.result}`
         }
         else {
-            document.getElementById( 'recentResultOut' ).innerHTML = `No calculations Yet`
+            document.getElementById( 'recentResultOut' ).innerHTML = `No calculations yet. Why not try some math?`
         }
     })
  } // end getRecent
@@ -90,11 +88,11 @@ function calculate(){
 
 function clearCalc(){
     event.preventDefault();
-
+    // clearing inputs
     document.getElementById( 'numOneIn' ).value = '';
     document.getElementById( 'numTwoIn' ).value = '';
     document.getElementById( 'operatorIn' ).value = '';
-
+    // resetting operator button styles
     let allButtons = document.querySelectorAll('.button-operator');
     allButtons.forEach( el => el.classList = "button-operator");
 } // end clearCalc
