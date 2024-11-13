@@ -1,15 +1,16 @@
 let calculations = {
-    all: [
-        {
-            numOne: 10,    // 👈 number
-            numTwo: 5,     // 👈 number
-            operator: '+', // 👈 string
-            result: 15     // 👈 number
-        }
-    ],
+    all: [],
     recent: function(){
-        console.log('recent', this.all[ this.all.length - 1]);
-        return this.all[ this.all.length - 1];
+        console.log('in recent');
+        if( this.all.length > 0 ){
+            return 'empty';
+            // console.log('recent', this.all[ this.all.length - 1]);
+            // return this.all[ this.all.length - 1];
+        }
+        else {
+            return 'empty';
+        }
+        
     }
     };
 

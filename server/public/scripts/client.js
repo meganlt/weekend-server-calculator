@@ -20,9 +20,6 @@ function getCalculations(){
 
         const calculations = response.data;
         const contentDivAll = document.getElementById( 'resultHistoryOut' );
-        // const lastCalc = response.data[response.data.length = 1];
-
-        // console.log('last calculation:', lastCalc);
 
         contentDivAll.innerHTML = '';
         let contentHTML = '';
@@ -34,9 +31,7 @@ function getCalculations(){
             </div>
             `
         }
-        contentDivAll.innerHTML = contentHTML;
-        getRecent();        
-
+        contentDivAll.innerHTML = contentHTML;   
     }).catch();
  } // end getCalculations
 
@@ -44,7 +39,12 @@ function getCalculations(){
     console.log('in getRecent');
     axios.get( '/calculations/recent' ).then( (response)=>{
         console.log( response.data );
-        document.getElementById( 'recentResultOut' ).innerHTML = `${response.data.numOne}${response.data.operator}${response.data.numTwo} = ${response.data.result}`
+        if( response.data !== 'empty'){
+            document.getElementById( 'recentResultOut' ).innerHTML = `${response.data.numOne}${response.data.operator}${response.data.numTwo} = ${response.data.result}`
+        }
+        else {
+            document.getElementById( 'recentResultOut' ).innerHTML = `No calculations Yet`
+        }
     })
  } // end getRecent
 
@@ -81,6 +81,7 @@ function calculate(){
     axios.post( '/calculations', objectToSend ).then( function(response){
         console.log( response.data );
         getCalculations();
+        getRecent();
     })
 
     // clear inputs and styles to reset form

@@ -7,7 +7,7 @@ calculationsRouter.get( '/', (req, res)=>{
     res.send( calculationsModule.all );
 })
 
-calculationsRouter.get( '/calculations/recent', (req, res)=>{
+calculationsRouter.get( '/recent', (req, res)=>{
     console.log( '/calculations/recent GET' );
     res.send( calculationsModule.recent() );
 })
