@@ -59,19 +59,7 @@ function calculate(){
         operator: operatorIn
     }
 
-    // calculate result and add to object
-    if(operatorIn === '+' ){
-        objectToSend.result = numOneIn + numTwoIn;
-    } 
-    else if( operatorIn === '-' ){
-        objectToSend.result = numOneIn - numTwoIn;
-    }
-    else if( operatorIn === '*' ){
-        objectToSend.result = numOneIn * numTwoIn;
-    }
-    else if( operatorIn === '/' ){
-        objectToSend.result = numOneIn / numTwoIn;
-    }
+
 
     console.log('assembled objectToSend:', objectToSend);
 
